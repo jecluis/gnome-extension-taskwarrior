@@ -36,14 +36,14 @@ const Convenience       = Me.imports.convenience;
 const Taskwarrior       = Me.imports.taskwarrior;
 const Prefs             = Me.imports.prefs;
 
-const NOTIF_ICON = 'taskwarrior-logo';
+var NOTIF_ICON = 'taskwarrior-logo';
 var taskMenuList = null;
-let Schema = null;
+var Schema = null;
 /*
  * Class for widget task list menu
  * TODO check if optimization required for long lists
  */
-const TaskwarriorListMenu = new Lang.Class({
+var TaskwarriorListMenu = new Lang.Class({
     Name: 'Taskwarrior.ListMenu',
 
     _init: function(menu) {
@@ -98,7 +98,7 @@ const TaskwarriorListMenu = new Lang.Class({
 /*
  * Class for widget handling add new task field
  */
-const TaskwarriorShellEntry = new Lang.Class({
+var TaskwarriorShellEntry = new Lang.Class({
     Name: 'Taskwarrior.ShellEntry',
     Extends: PopupMenu.PopupBaseMenuItem,
 
@@ -144,7 +144,7 @@ const TaskwarriorShellEntry = new Lang.Class({
 /*
  * Class for widget handling task filter
  */
-const TaskwarriorFilterEntry = new Lang.Class({
+var TaskwarriorFilterEntry = new Lang.Class({
     Name: 'Taskwarrior.FilterEntry',
     Extends: PopupMenu.PopupBaseMenuItem,
 
@@ -180,7 +180,7 @@ const TaskwarriorFilterEntry = new Lang.Class({
 /*
  * Class for widget handling core display information (task description and done/start buttons)
  */
-const TaskwarriorMenuItem = new Lang.Class({
+var TaskwarriorMenuItem = new Lang.Class({
     Name: 'Taskwarrior.MenuItem',
     Extends: PopupMenu.PopupSubMenuMenuItem,
 
@@ -214,7 +214,7 @@ const TaskwarriorMenuItem = new Lang.Class({
 /*
  * Class for widget handling advanced display information and advanced buttons like delete, etc ...
  */
-const TaskwarriorMenuAdvancedItem1 = new Lang.Class({
+var TaskwarriorMenuAdvancedItem1 = new Lang.Class({
     Name: 'Taskwarrior.MenuAdvancedItem1',
     Extends: PopupMenu.PopupBaseMenuItem,
 
@@ -263,7 +263,7 @@ const TaskwarriorMenuAdvancedItem1 = new Lang.Class({
 /*
  * Class for widget handling advanced display information and advanced buttons like delete, etc ...
  */
-const TaskwarriorMenuAdvancedItem2 = new Lang.Class({
+var TaskwarriorMenuAdvancedItem2 = new Lang.Class({
     Name: 'Taskwarrior.MenuAdvancedItem2',
     Extends: PopupMenu.PopupBaseMenuItem,
 
@@ -289,7 +289,7 @@ const TaskwarriorMenuAdvancedItem2 = new Lang.Class({
 /*
  * Class for widget handling advanced display information and advanced buttons like delete, etc ...
  */
-const TaskwarriorMenuAdvancedItem3 = new Lang.Class({
+var TaskwarriorMenuAdvancedItem3 = new Lang.Class({
     Name: 'Taskwarrior.MenuAdvancedItem3',
     Extends: PopupMenu.PopupBaseMenuItem,
 
@@ -320,7 +320,7 @@ const TaskwarriorMenuAdvancedItem3 = new Lang.Class({
 /*
  * Class for widget handling advanced display information and advanced buttons like delete, etc ...
  */
-const TaskwarriorMenuAdvancedItem4 = new Lang.Class({
+var TaskwarriorMenuAdvancedItem4 = new Lang.Class({
     Name: 'Taskwarrior.MenuAdvancedItem4',
     Extends: PopupMenu.PopupBaseMenuItem,
 
@@ -345,7 +345,7 @@ const TaskwarriorMenuAdvancedItem4 = new Lang.Class({
 /*
  * Button class to call various actions
  */
-const TaskButton = new Lang.Class({
+var TaskButton = new Lang.Class({
     Name: 'Task.Button',
     extends: 'Button',
 
@@ -407,7 +407,7 @@ const TaskButton = new Lang.Class({
 /*
  * Prompt dialog to confirm command before execution
  */
-const TaskConfirmDialog = new Lang.Class({
+var TaskConfirmDialog = new Lang.Class({
     Name: 'Task.Confirm.Dialog',
     Extends: ModalDialog.ModalDialog,
 
@@ -440,7 +440,7 @@ const TaskConfirmDialog = new Lang.Class({
 /*
  * Prompt dialog to modify task attributes
  */
-const TaskModifyDialog = new Lang.Class({
+var TaskModifyDialog = new Lang.Class({
     Name: 'Task.Modify.Dialog',
     Extends: ModalDialog.ModalDialog,
 
