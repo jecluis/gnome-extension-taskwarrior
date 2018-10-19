@@ -22,6 +22,7 @@
 
 const GLib = imports.gi.GLib;
 const Lang = imports.lang;
+const Main = imports.ui.main;
 
 
 const ExtensionUtils = imports.misc.extensionUtils;
@@ -53,6 +54,7 @@ var LABEL_ENTERED = "created";
 var LABEL_START = "started";
 var LABEL_DUE = "due";
 var LABEL_TAGS = "tags";
+var LABEL_URL = "url"
 
 /*
  * Dispatch table for possible cmd towards taskwarrior
@@ -82,6 +84,8 @@ const Task = new Lang.Class({
         this.priority = task.priority;
         this.project = task.project;
         this.tags = task.tags;
+        // uda.url
+        this.url = task.url;
     }
 });
 

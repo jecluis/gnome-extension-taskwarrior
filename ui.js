@@ -29,6 +29,7 @@ const Clutter       = imports.gi.Clutter;
 const MessageTray   = imports.ui.messageTray;
 const ModalDialog   = imports.ui.modalDialog;
 const BoxPointer    = imports.ui.boxpointer;
+const Gio           = imports.gi.Gio;
 
 const ExtensionUtils    = imports.misc.extensionUtils;
 const Me                = ExtensionUtils.getCurrentExtension();
@@ -81,6 +82,7 @@ var TaskwarriorListMenu = new Lang.Class({
             let itemSub2 = new TaskwarriorMenuAdvancedItem2(taskList[i]);
             let itemSub3 = new TaskwarriorMenuAdvancedItem3(taskList[i]);
             let itemSub4 = new TaskwarriorMenuAdvancedItem4(taskList[i]);
+            let itemSub5 = new TaskwarriorMenuAdvancedItem5(taskList[i]);
 
             // Show task description + button done + button start  + arrow to expand with extra options
             let item = new TaskwarriorMenuItem(taskList[i]);
@@ -89,6 +91,9 @@ var TaskwarriorListMenu = new Lang.Class({
             item.menu.addMenuItem(itemSub2);
             item.menu.addMenuItem(itemSub3);
             item.menu.addMenuItem(itemSub4);
+            if (taskList[i].url) {
+                item.menu.addMenuItem(itemSub5);
+            }
             taskMenuList.addMenuItem(item);
         }
     }
@@ -338,6 +343,47 @@ var TaskwarriorMenuAdvancedItem4 = new Lang.Class({
             this.label_due_value = new St.Label({ text: Taskwarrior.LABEL_EMPTY, style_class: 'task-label-data' });
         }
         this.actor.add_child(this.label_due_value);
+    }
+});
+
+/*
+ * Show UDA's for tracker ticket/url
+ */
+var TaskwarriorMenuAdvancedItem5 = new Lang.Class({
+    Name: 'Taskwarrior.MenuAdvancedItem5',
+    Extends: PopupMenu.PopupBaseMenuItem,
+
+    _init: function(task) {
+        this.parent();
+
+        if (task.url) {
+            this.task_url = task.url;
+            this.label_url = new St.Label({
+                text: Taskwarrior.LABEL_URL,
+                style_class: 'task-label'
+            });
+            this.label_url_value = new St.Label({
+                text: this.task_url,
+                style_class: 'task-label-data'
+            });
+
+            /*
+            this.actor.add(this.label_url, { expand: true });
+            this.actor.add(this.label_url_value, { expand: true });
+            */
+            this.actor.add_child(this.label_url);
+            this.actor.add_child(this.label_url_value);
+        }
+    },
+
+    activate: function(event) {
+        /*
+        global.log("[gnome-shell-tw] activate: event = " + event +
+                   ", contents = " + JSON.stringify(event) +
+                   ", url = " + this.task_url);
+        */
+        let context = global.create_app_launch_context(event.get_time(), -1);
+        Gio.AppInfo.launch_default_for_uri(this.task_url, context);
     }
 });
 
